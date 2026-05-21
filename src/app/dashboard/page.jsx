@@ -4,11 +4,15 @@ import { KnowledgeBase } from "../../components/overview/KnowledgebaseOverview";
 import { Sections } from "../../components/overview/SectionsOverview";
 import { RecentChats } from "../../components/overview/Recentchats";
 import { InstallWidget } from "../../components/overview/Installwidget";
-import { useGetOverview } from "../../hooks/useOrganization";
+import { useGetOrganization, useGetOverview } from "../../hooks/useOrganization";
 import { useEffect, useState } from "react";
+import { useGetChatBotMetaData } from "../../hooks/useChatBot";
 
 export default function OverviewPage() {
   const {data,isLoading} = useGetOverview()
+const {data:metadata} = useGetChatBotMetaData()
+  console.log(metadata);
+  
   const [completedSteps, setCompletedSteps] = useState([]);
   const [konwledgeBaseCount, setKnowledgeBaseCount] = useState({
     website: 0,
@@ -43,7 +47,7 @@ export default function OverviewPage() {
 
           {/* Install Widget + Recent Chats — stacked on mobile, side by side on md+ */}
           <div className="flex flex-col md:flex-row justify-start w-full items-stretch gap-4">
-            <InstallWidget />
+           {metadata && <InstallWidget chatbotId={metadata.id} />}
             <RecentChats conversations={conversations} />
           </div>
         </div>

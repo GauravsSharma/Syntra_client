@@ -3,13 +3,14 @@
 import { Copy, Check } from "lucide-react";
 import { useState } from "react";
 
-const snippet = `<script src="http://localhost:3000/widget.js"
-  data-id="a6afa329-a3c5-4104-b71b-e2371792904B"
+
+export function InstallWidget({chatbotId}) {
+  const [copied, setCopied] = useState(false);
+
+ const snippet = `<script src="https://syntra-one.vercel.app/widget.js"
+  data-id="${chatbotId}"
   defer>
 </script>`;
-
-export function InstallWidget() {
-  const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(snippet);
