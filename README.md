@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
 
-## Getting Started
+<img src="https://img.shields.io/badge/Syntra-Client-7c3aed?style=for-the-badge&logoColor=white" alt="Syntra Client" />
 
-First, run the development server:
+# Syntra — Frontend
+
+### Dashboard & embeddable chatbot widget for the Syntra AI support platform.
+
+[![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![Socket.io](https://img.shields.io/badge/Socket.io-010101?style=flat-square&logo=socketdotio&logoColor=white)](https://socket.io)
+[![Zustand](https://img.shields.io/badge/Zustand-000000?style=flat-square&logoColor=white)](https://zustand-demo.pmnd.rs)
+
+[Backend Repo](#) · [Live Demo](#) · [Report Bug](#)
+
+</div>
+
+---
+
+## Overview
+
+This is the frontend for **Syntra** — an AI-powered customer support platform. It includes two main surfaces:
+
+- **Dashboard** — where org members manage knowledge sources, configure chatbots, handle escalated conversations, and monitor support activity in real time.
+- **Chatbot Widget** — a lightweight embeddable chat UI that end users interact with on any website.
+
+---
+
+## ✨ Key Frontend Features
+
+### 🔴 Real-Time Escalation Alerts
+When a user raises a support ticket, agents on the dashboard get an **instant toast notification** via Socket.io — no polling, no page refresh.
+
+### 🔢 Live Escalation Badge
+The Conversations sidebar item shows a **live count** of pending escalated chats, updating in real time as conversations are escalated or resolved.
+
+### 💬 Conversations Page
+Lists all escalated conversations. Agents can open a chat, join it live, exchange messages in real time with the user, and mark it as resolved — all from one view.
+
+### 🎨 Chatbot Widget
+A fully embeddable chat UI served from `/widget`. Connects via Socket.io using a JWT session token (valid for 2 hours), supports AI replies, escalation flow, agent handover, and resolution — all in the same window.
+
+### 🏢 Multi-Tenant Dashboard
+Each organisation sees only their own chatbots, knowledge, conversations, and members — fully isolated via ScaleKit auth.
+
+---
+
+## 🛠️ Tech Stack
+
+| Purpose | Technology |
+|---------|-----------|
+| Framework | Next.js 14 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS |
+| Components | shadcn/ui |
+| Real-Time | Socket.io Client |
+| Server State | React Query (TanStack) |
+| Global State | Zustand |
+| HTTP | Axios |
+| Auth | ScaleKit |
+| Animations | Framer Motion |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+
+- Syntra backend running ([Backend Repo](#))
+
+### Installation
+
+```bash
+git clone https://github.com/gauravssharma/syntra-client.git
+cd syntra-client
+npm install
+```
+
+### Environment Variables
+
+Create a `.env` file in the root:
+
+```env
+NEXT_PUBLIC_SERVER_URL=http://localhost:5000
+```
+
+### Run
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔌 Socket Events (Client Side)
 
-## Learn More
+| Event | Direction | Description |
+|-------|-----------|-------------|
+| `join:org` | emit | Join org room on dashboard load |
+| `join:conversation` | emit | Widget joins its conversation room |
+| `new:escalation` | on | New escalated chat — show toast + update badge |
+| `agent:joined` | on | Agent joined — show agent name in widget |
+| `new:message` | on/emit | Real-time message exchange |
+| `status:update` | on | Conversation status changed (ESCALATED/ACTIVE/EXPIRED/RESOLVED) |
+| `chat:resolved` | on | Conversation resolved — update badge count |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📄 License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+MIT License — see [LICENSE](LICENSE) for details.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<div align="center">
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Part of the [Syntra](https://github.com/gauravssharma/syntra) platform · Built by [Gaurav Sharma](https://gaurav-olive.vercel.app/)
+
+</div>
