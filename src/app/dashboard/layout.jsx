@@ -7,7 +7,7 @@ import Sidebar from "../../components/dashboard/Sidebar";
 import DashboardClient from "../../components/dashboard/DashboardClient";
 import InitialForm from "../../components/dashboard/InitialForm";
 import DashboardContentWrapper from "../../components/dashboard/DashboardContentWrapper";
-import api from "@/lib/axios";
+import api from "../../lib/axios";
 
 export default function DashboardLayout({
   children,
