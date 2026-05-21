@@ -27,22 +27,156 @@ This is the frontend for **Syntra** — an AI-powered customer support platform.
 
 ---
 
-## ✨ Key Frontend Features
+## 🚀 Getting Started — Step by Step
+
+Follow these steps in order to go from a fresh account to a fully deployed AI chatbot on your website.
+
+---
+
+### Step 1 — Knowledge Base
+
+> **Dashboard → Knowledge**
+
+This is where you teach your chatbot everything it needs to know. Syntra supports three ways to add knowledge:
+
+**🌐 Website URL**
+Enter any public website URL. Syntra will crawl the page and extract its content automatically — great for documentation sites, help centres, or landing pages.
+
+**📄 Upload File**
+Upload a CSV file containing your FAQs, product info, or any structured content. Syntra parses it and makes it available to the AI instantly.
+
+**✏️ Manual Text**
+Copy-paste FAQs, internal notes, policies, or any custom content directly into the editor. Best for content that isn't published anywhere online.
+
+> ⚠️ **Plan Limits**
+> | Plan | Knowledge Sources/Section |
+> |------|--------------------------|
+> | Free | 1 |
+> | Ninja ($9.99/mo) | 2 |
+> | Ninja Pro ($29.99/mo) | 5 |
+
+---
+
+### Step 2 — Sections
+
+> **Dashboard → Sections**
+
+Sections let you organise your knowledge and control how the AI responds for different topics.
+
+**How to create a section:**
+
+1. Click **"Create your first section"**
+2. Enter a **Section Name** (e.g. `Billing Policy`, `Product FAQ`)
+3. Add a **Description** — this tells the AI routing model *when* to activate this section
+4. Select **Knowledge Sources** — attach one or more sources from Step 1
+5. Choose a **Tone** for this section:
+
+| Tone | Style | Best For |
+|------|-------|----------|
+| **Strict** | Fact-based only. No small talk. | Legal, compliance, billing |
+| **Neutral** | Professional, concise, direct | General product info |
+| **Friendly** | Warm and conversational | FAQs, onboarding |
+| **Empathetic** | Support-first, apologetic, calming | Complaints, refunds |
+
+6. Optionally set **Scope Rules** — define allowed and blocked topics to keep the AI focused
+7. Click **"Create Section"**
+
+> 💡 You can create multiple sections with different tones — one chatbot, many personalities.
+
+---
+
+### Step 3 — Chatbot Playground
+
+> **Dashboard → Chatbot**
+
+This is where you customise the look of your chatbot and test it before deploying.
+
+**Appearance:**
+- **Primary Color** — choose from preset colors to match your brand
+- **Welcome Message** — the first message users see when they open the chat
+
+Click **"Save Changes"** after customising.
+
+**Test Environment:**
+The left panel is a live playground — send messages to test how your chatbot responds using your actual knowledge sources and sections. Make sure answers are correct before embedding.
+
+**Embed Code:**
+Once satisfied, copy the embed snippet shown at the bottom:
+
+```html
+<script
+  src="https://syntra.app/widget.js"
+  data-id="your-chatbot-id"
+  defer>
+</script>
+```
+
+Paste this before the closing `</head>` tag on your website. The chatbot widget will appear automatically.
+
+---
+
+### Step 4 — Conversations
+
+> **Dashboard → Conversations**
+
+Your team's live support inbox. Shows all **escalated conversations** — chats where the AI couldn't answer and a user raised a support ticket.
+
+**How it works:**
+- When AI can't answer, it asks the user if they'd like to raise a ticket
+- If the user agrees, the conversation appears here instantly via Socket.io — no refresh needed
+- A team member opens the conversation and joins the live chat
+- Agent and user exchange messages in real time
+- Once resolved, agent clicks **"Resolve"** — conversation is closed and logged with agent email + timestamp
+
+**If no agent joins within 10 minutes:**
+- Conversation is automatically marked as expired
+- AI asks the user for their email address
+- Org owner receives an email notification about the missed escalation
+
+---
+
+### Step 5 — Settings
+
+> **Dashboard → Settings**
+
+Manage your organisation details and invite team members who can handle escalated conversations from the Conversations tab.
+
+---
+
+### Step 6 — Billing
+
+> **Dashboard → Billing**
+
+View your current plan, usage, and upgrade when needed.
+
+| Plan | Price | AI Messages/mo | Knowledge Sources/section |
+|------|-------|---------------|--------------------------|
+| **Free** | $0 | 100 | 1 |
+| **Ninja** | $9.99/mo | 2,000 | 2 |
+| **Ninja Pro** | $29.99/mo | 10,000 | 5 |
+
+> All plans include SSL security, 99.9% uptime SLA, and email support.
+
+Click **"Manage subscription"** to upgrade or cancel your plan.
+
+---
+
+## ✨ Key Features
 
 ### 🔴 Real-Time Escalation Alerts
-When a user raises a support ticket, agents on the dashboard get an **instant toast notification** via Socket.io — no polling, no page refresh.
+When a user raises a support ticket, agents get an **instant toast notification** — no polling, no page refresh. Powered by Socket.io.
 
 ### 🔢 Live Escalation Badge
-The Conversations sidebar item shows a **live count** of pending escalated chats, updating in real time as conversations are escalated or resolved.
+The Conversations sidebar shows a live count of pending escalated chats, updating in real time as conversations come in or get resolved.
 
-### 💬 Conversations Page
-Lists all escalated conversations. Agents can open a chat, join it live, exchange messages in real time with the user, and mark it as resolved — all from one view.
+### 🎨 Chatbot Customisation
+Set your brand color and welcome message. Test everything in the live playground before going live.
 
-### 🎨 Chatbot Widget
-A fully embeddable chat UI served from `/widget`. Connects via Socket.io using a JWT session token (valid for 2 hours), supports AI replies, escalation flow, agent handover, and resolution — all in the same window.
+### 🔌 One-Line Embed
+Drop your chatbot into any website with a single script tag — no framework or coding knowledge required.
 
-### 🏢 Multi-Tenant Dashboard
-Each organisation sees only their own chatbots, knowledge, conversations, and members — fully isolated via ScaleKit auth.
+### 🏢 Multi-Tenant
+Each organisation sees only their own chatbots, knowledge, conversations, and members — fully isolated.
 
 ---
 
@@ -63,7 +197,7 @@ Each organisation sees only their own chatbots, knowledge, conversations, and me
 
 ---
 
-## 🚀 Getting Started
+## 💻 Local Setup
 
 ### Prerequisites
 - Node.js 18+
@@ -79,8 +213,6 @@ npm install
 
 ### Environment Variables
 
-Create a `.env` file in the root:
-
 ```env
 NEXT_PUBLIC_SERVER_URL=http://localhost:5000
 ```
@@ -95,7 +227,7 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 🔌 Socket Events (Client Side)
+## 🔌 Socket Events
 
 | Event | Direction | Description |
 |-------|-----------|-------------|
@@ -104,7 +236,7 @@ Open [http://localhost:3000](http://localhost:3000)
 | `new:escalation` | on | New escalated chat — show toast + update badge |
 | `agent:joined` | on | Agent joined — show agent name in widget |
 | `new:message` | on/emit | Real-time message exchange |
-| `status:update` | on | Conversation status changed (ESCALATED/ACTIVE/EXPIRED/RESOLVED) |
+| `status:update` | on | Conversation status changed |
 | `chat:resolved` | on | Conversation resolved — update badge count |
 
 ---
@@ -118,5 +250,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 <div align="center">
 
 Part of the [Syntra](https://github.com/gauravssharma/syntra) platform · Built by [Gaurav Sharma](https://gaurav-olive.vercel.app/)
+
+⭐ Star this repo if you find it useful!
 
 </div>
