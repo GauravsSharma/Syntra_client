@@ -223,7 +223,7 @@ export default function Navbar() {
                                 )}
 
                                 <button
-                                onClick={handleAction}
+                                onClick={handleClick}
                                     className="
                                         w-full
                                         py-3

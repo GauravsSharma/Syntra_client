@@ -17,7 +17,7 @@ export const useGetOrganization = () => {
     queryKey: ["get-organization"],
     queryFn: async () => {
       const res = await api.get('/api/organization')
-      return res.data.organization;
+      return res.data;
     }
   })
 }
