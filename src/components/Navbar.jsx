@@ -24,7 +24,7 @@ export default function Navbar() {
     const links = [
         { name: 'Features', href: '#features' },
         { name: 'Pricing', href: '#pricing' },
-        { name: 'Docs', href: '#docs' },
+        { name: 'Docs', href: 'https://github.com/GauravsSharma/Syntra_client/blob/main/README.md' },
     ];
    const handleClick = () => {
         if (user) {
