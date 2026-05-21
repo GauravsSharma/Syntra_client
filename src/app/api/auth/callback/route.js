@@ -111,7 +111,7 @@ export async function GET(req) {
             );
         }
         cookieStore.set(
-            "user_session",
+            "user_session_pub",
             JSON.stringify(userSession),
             {
                 httpOnly: true,

@@ -12,7 +12,7 @@ export const metadata = { title: "Dashboard | Syntra AI" };
 
 export default async function DashboardLayout({ children }) {
   const cookieStore = await cookies();
-  const token = cookieStore.get("user_session").value;
+  const token = cookieStore.get("user_session_pub").value;
 
   if (!token) {
     redirect("/");
