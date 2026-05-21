@@ -18,7 +18,7 @@ export function ChatSimulator({
   scrollRef,
 }) {
   return (
-    <div className="flex flex-col h-full max-h-[480px] lg:max-h-[520px] rounded-xl border border-border bg-card overflow-hidden">
+    <div className="flex flex-col h-120 max-h-120 lg:max-h-130 rounded-xl border border-border bg-card overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-3 sm:px-4 py-3 border-b border-border shrink-0">
         <div className="flex items-center gap-2 min-w-0">

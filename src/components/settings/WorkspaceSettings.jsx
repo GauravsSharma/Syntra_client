@@ -1,6 +1,7 @@
 "use client";
 
 export default function WorkspaceSettings({ workspace }) {
+  if(!workspace) return null;
   return (
     <section>
       <div className="mb-5">
