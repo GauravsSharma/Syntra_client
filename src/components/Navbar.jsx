@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useUserStore } from '../stores/useUserStore';
@@ -11,7 +11,7 @@ import { useGetUser } from '../hooks/useUser';
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-
+    const router = useRouter()
     useGetUser();
 
     const pathname = usePathname();
@@ -26,7 +26,14 @@ export default function Navbar() {
         { name: 'Pricing', href: '#pricing' },
         { name: 'Docs', href: '#docs' },
     ];
-
+   const handleClick = () => {
+        if (user) {
+            router.push("/dashboard")
+        }
+        else {
+            window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`;
+        }
+    }
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 30);
@@ -216,6 +223,7 @@ export default function Navbar() {
                                 )}
 
                                 <button
+                                onClick={handleAction}
                                     className="
                                         w-full
                                         py-3

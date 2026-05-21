@@ -12,7 +12,7 @@ export default function CTASection({ playfair }) {
       router.push("/dashboard")
     }
     else {
-      window.location.href = 'http://localhost:5000/api/auth/login';
+       window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`;
     }
   }
   return (

@@ -1,40 +1,67 @@
+"use client";
+
+import { useMemo } from "react";
 
 import WorkspaceSettings from "../../../components/settings/WorkspaceSettings";
 import TeamMembers from "../../../components/settings/TeamMembers";
 import DangerZone from "../../../components/settings/Dangerzone";
-import { cookies } from "next/headers";
 import MainSettings from "../../../components/settings/MainSettings";
-// Mock data — replace with real DB/API calls
 
-const teamMembers = []; // Empty = "No team members found"
+import { useGetOrganization } from "../../../hooks/useOrganization";
 
-export const metadata = {
-  title: "Settings | OneMinute Support",
-};
+const teamMembers = [];
 
-export default async function SettingsPage() {
-  const cookieStore = await cookies();
-  const cookieHeader = cookieStore
-    .getAll()
-    .map((c) => `${c.name}=${c.value}`)
-    .join("; ");
+export default function SettingsPage() {
+  const { data, isLoading, isError } = useGetOrganization();
 
-  const res = await fetch("http://localhost:5000/api/organization", {
-    headers: { Cookie: cookieHeader },
-  });
-  const data = await res.json();
-  const organization = data.organization
+  const organization = data?.organization;
 
-  const workspaceData = {
-    name: organization.business_name,
-    website: organization.website_url,
-    language: "English",
-    timezone: "UTC (GMT+0)",
-  };
+  const workspaceData = useMemo(
+    () => ({
+      name:
+        organization?.business_name || "",
+
+      website:
+        organization?.website_url || "",
+
+      language: "English",
+
+      timezone: "UTC (GMT+0)",
+    }),
+    [organization]
+  );
+
+  if (isLoading) {
+    return (
+      <div className="text-white p-6">
+        Loading...
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="text-red-500 p-6">
+        Failed to load organization
+      </div>
+    );
+  }
 
   return (
     <>
-      <MainSettings workspaceData={workspaceData} />
+      <MainSettings
+        workspaceData={workspaceData}
+      />
+
+      <WorkspaceSettings
+        workspaceData={workspaceData}
+      />
+
+      <TeamMembers
+        teamMembers={teamMembers}
+      />
+
+      <DangerZone />
     </>
   );
 }

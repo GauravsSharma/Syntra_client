@@ -12,7 +12,7 @@ const Hero = ({ playfair }) => {
             router.push("/dashboard")
         }
         else {
-            window.location.href = 'http://localhost:5000/api/auth/login';
+            window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`;
         }
     }
     return (
@@ -118,7 +118,8 @@ const Hero = ({ playfair }) => {
                 </button>
 
                 {/* Secondary */}
-                <button
+                <a
+                    href="https://github.com/GauravsSharma/Syntra_client/blob/main/README.md"
                     className="
                 flex items-center gap-2
                 px-8 py-4
@@ -136,7 +137,7 @@ const Hero = ({ playfair }) => {
                 >
                     See how it works
                     <ArrowUpRight size={16} />
-                </button>
+                </a>
             </div>
 
             {/* Bottom Text */}
