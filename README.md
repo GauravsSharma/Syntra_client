@@ -12,7 +12,7 @@
 [![Socket.io](https://img.shields.io/badge/Socket.io-010101?style=flat-square&logo=socketdotio&logoColor=white)](https://socket.io)
 [![Zustand](https://img.shields.io/badge/Zustand-000000?style=flat-square&logoColor=white)](https://zustand-demo.pmnd.rs)
 
-[Backend Repo](#) · [Live Demo](#) · [Report Bug](#)
+[Backend Repo](https://github.com/GauravsSharma/Syntra_server) · [Live Demo](https://syntra-one.vercel.app/) · [Report Bug](#)
 
 </div>
 
