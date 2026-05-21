@@ -9,7 +9,7 @@
       return;
     }
 
-    fetch("http://localhost:5000/api/widget/session", {
+    fetch("https://syntra-dev.duckdns.org/api/widget/session", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +30,7 @@
 
         var iframe = document.createElement("iframe");
         iframe.src =
-          "http://localhost:3000/embed?token=" +
+          "https://syntra-one.vercel.app/embed?token=" +
           encodeURIComponent(data.token); // <-- fixed typo (locahost)
 
         iframe.setAttribute("title", "Support Chat");
