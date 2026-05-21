@@ -18,7 +18,7 @@ export default function Navbar() {
     const { user } = useUserStore();
 
     const loginInUser = () => {
-        window.location.href = `/api/auth/login`;
+        window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`;
     };
 
     const links = [
