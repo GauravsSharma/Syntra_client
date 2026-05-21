@@ -3,6 +3,7 @@ import LenisScroll from '../components/Lenis-scroll';
 import QueryProvider from './QueryProvider';
 import { Inter } from "next/font/google";
 import { Toaster } from 'sonner';
+import NextTopLoader from 'nextjs-toploader';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,6 +22,17 @@ export default function RootLayout({ children }) {
             <LenisScroll />
             <body className={`${inter.className}`}>
                 <QueryProvider>
+               <NextTopLoader
+  color="#c8a882"
+  initialPosition={0.08}
+  crawlSpeed={200}
+  height={3}
+  crawl={true}
+  showSpinner={false}
+  easing="ease"
+  speed={200}
+  shadow="0 0 10px #c8a882, 0 0 5px #d4956a"
+/>
                     {children}
                      <Toaster theme='dark'/>
                 </QueryProvider>
