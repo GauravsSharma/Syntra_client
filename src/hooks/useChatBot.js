@@ -1,3 +1,4 @@
+import embedApi from "../lib/embedAxios";
 import api from "../lib/axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
@@ -36,7 +37,7 @@ export const useChatToBot = () => {
         throw new Error("Token is required");
       }
 
-      const res = await api.post(
+      const res = await embedApi.post(
         "/api/widget/chat",
         data,
         {
