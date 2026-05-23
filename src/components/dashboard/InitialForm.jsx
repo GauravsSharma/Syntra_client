@@ -48,7 +48,7 @@ const InitialForm = () => {
         websiteUrl: "",
         externalLinks: "",
     });
-    const router = useRouter()
+
     const inputRef = useRef(null);
     const isLastStep = currentStep === STEPS.length - 1;
     const progress = ((currentStep + 1) / STEPS.length) * 100;
@@ -93,7 +93,6 @@ const InitialForm = () => {
         mutate(formData, {
             onSuccess: () => {
                 toast.success("Organization setup complete!");
-                router.refresh()
                // You can redirect or reset the form here
             },
             onError: () => {

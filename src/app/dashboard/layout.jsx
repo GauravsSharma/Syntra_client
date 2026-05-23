@@ -8,36 +8,17 @@ import DashboardClient from "../../components/dashboard/DashboardClient";
 import InitialForm from "../../components/dashboard/InitialForm";
 import DashboardContentWrapper from "../../components/dashboard/DashboardContentWrapper";
 import api from "../../lib/axios";
+import { useGetMetaData } from "../../hooks/useUser";
+import { useUserStore } from "../../stores/useUserStore";
 
 export default function DashboardLayout({
   children,
 }) {
-  const router = useRouter();
 
-  const [loading, setLoading] =
-    useState(true);
-
-  const [metadata, setMetadata] =
-    useState(null);
-
-  useEffect(() => {
-    const getMetadata = async () => {
-      try {
-        const res = await api.get(
-          "/api/auth/metadata"
-        );
-
-        setMetadata(res.data.metadata);
-      } catch (error) {
-        router.push("/");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getMetadata();
-  }, []);
-
+  const {isLoading:loading} = useGetMetaData()
+  const {metadata} = useUserStore()
+  console.log(metadata);
+  
   if (loading) {
     return <div>Loading...</div>;
   }
