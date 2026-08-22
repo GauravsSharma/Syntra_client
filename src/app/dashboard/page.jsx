@@ -35,7 +35,7 @@ const {data:metadata} = useGetChatBotMetaData()
 
   return (
     <div className="min-h-screen bg-[#0d0d0d] text-white">
-      <div className="max-w-6xl mx-auto px-4 py-6 md:p-8">
+      <div className="max-w-[71rem] mx-auto px-4 py-6 md:p-8">
         <SetupProgress completedSteps={completedSteps} />
 
         <div className="flex flex-col gap-4">

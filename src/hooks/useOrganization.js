@@ -1,7 +1,7 @@
 import api from "../lib/axios";
 import { useTeamMemberStore } from "../stores/useTeamMemberStore";
 import { useConversationStore } from "../stores/useConversationStore";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useUserStore } from "../stores/useUserStore";
 
 export const useTestChatbot = () => {
@@ -9,6 +9,19 @@ export const useTestChatbot = () => {
     mutationFn: async (data) => {
       const res = await api.post("/api/organization", data);
       return res.data.message;
+    },
+  });
+};
+
+export const useUpdateOrganizationSettings = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (data) => {
+      const res = await api.put("/api/organization/settings", data);
+      return res.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["get-organization"] });
     },
   });
 };

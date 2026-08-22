@@ -41,6 +41,8 @@ export default function SettingsPage() {
     <>
       <MainSettings
         workspaceData={workspaceData}
+        allowEscalation={organization?.allowEscalation ?? true}
+        allowedOrigins={organization?.allowedOrigins ?? []}
       />
     </>
   );

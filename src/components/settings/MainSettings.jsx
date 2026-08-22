@@ -4,8 +4,10 @@ import DangerZone from './Dangerzone'
 import TeamMembers from './TeamMembers'
 import WorkspaceSettings from './WorkspaceSettings'
 import AddMemberDialog from './AddMemberDialog'
+import EscalationSettings from './EscalationSettings'
+import AllowedOriginsSettings from './AllowedOriginsSettings'
 
-const MainSettings = ({ workspaceData }) => {
+const MainSettings = ({ workspaceData, allowEscalation, allowedOrigins }) => {
   const [open, setOpen] = useState(false);
   return (
     <main className="w-full overflow-y-auto">
@@ -21,6 +23,10 @@ const MainSettings = ({ workspaceData }) => {
       <div className="px-4 sm:px-6 md:px-10 py-6 md:py-8 flex flex-col gap-8 max-w-full">
         <div className="rounded-2xl border border-white/[0.07] bg-[#111111] px-4 sm:px-6 md:px-8 py-6 md:py-7 flex flex-col gap-8 md:gap-10">
           <WorkspaceSettings workspace={workspaceData} />
+          <hr className="border-white/[0.06]" />
+          <EscalationSettings allowEscalation={allowEscalation} />
+          <hr className="border-white/[0.06]" />
+          <AllowedOriginsSettings allowedOrigins={allowedOrigins} />
           <hr className="border-white/[0.06]" />
           <TeamMembers setOpen={setOpen} />
           <hr className="border-white/[0.06]" />
