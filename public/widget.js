@@ -55,7 +55,10 @@
             iframe.style.width = data.width;
             iframe.style.height = data.height;
             iframe.style.borderRadius = data.borderRadius || "12px";
-
+            if (data.maxWidth) iframe.style.maxWidth = data.maxWidth;
+            if (data.maxHeight) iframe.style.maxHeight = data.maxHeight;
+            if (data.bottom) iframe.style.bottom = data.bottom;
+            if (data.right) iframe.style.right = data.right;
           }
         });
       })

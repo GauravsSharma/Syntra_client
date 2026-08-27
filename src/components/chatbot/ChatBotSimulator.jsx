@@ -135,21 +135,17 @@ export function ChatSimulator({
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder={
-              activeSection
-                ? "Type your message..."
-                : "Select a category to start..."
-            }
+            placeholder="Type your message..."
             className="flex-1 min-w-0 bg-transparent text-xs sm:text-sm text-foreground placeholder:text-muted-foreground outline-none disabled:cursor-not-allowed"
           />
 
           <button
             onClick={handleSend}
-            disabled={!input.trim() || !activeSection}
+            disabled={!input.trim()}
             className="w-8 h-8 rounded-lg flex items-center justify-center transition-all disabled:opacity-30 shrink-0"
             style={{
               backgroundColor:
-                input.trim() && activeSection
+                input.trim()
                   ? primaryColor
                   : "transparent",
             }}
@@ -157,7 +153,7 @@ export function ChatSimulator({
             <Send
               size={14}
               className={cn(
-                input.trim() && activeSection
+                input.trim()
                   ? "text-white"
                   : "text-muted-foreground"
               )}

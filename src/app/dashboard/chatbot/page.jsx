@@ -55,8 +55,7 @@ export default function ChatbotPage() {
   };
 
   const handleSend = () => {
-    if (!input.trim() || !activeSection){
-      toast.error("Please add or select section")
+    if (!input.trim()){
       return;
     } 
 
@@ -74,7 +73,7 @@ export default function ChatbotPage() {
     mutate(
       {
         messages: updatedMessages,
-        sectionId: activeSection
+        sectionId: activeSection || null
       },
       {
         onSuccess: (mssg) => {
